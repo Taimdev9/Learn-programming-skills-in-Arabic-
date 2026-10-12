@@ -1,12 +1,9 @@
 /* ============================================================
-   TaimCode — الدروس (الجزء 1/2)
-   HTML + CSS
+   TaimCode — محتوى الدروس
    Dev: Taimdev9
    ============================================================ */
 
-window.COURSES = window.COURSES || [];
-
-window.COURSES.push(
+window.COURSES = [
 
 /* ==================== HTML ==================== */
 {
@@ -633,52 +630,711 @@ h2 { color: #22d3ee; }
   font-weight: 800;
   font-size: 16px;
 }
-/ صف آخر بتوسيط عمودي *
 
+/* صف آخر بتوسيط عمودي */
 .center-row {
-
-display: flex;
-
-justify-content: center;
-
-align-items: center;
-
-gap: 12px;
-
-background: #1e293b;
-
-padding: 18px;
-
-border-radius: 14px;
-
-margin-bottom: 18px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #1e293b;
+  padding: 18px;
+  border-radius: 14px;
+  margin-bottom: 18px;
 }
 
 button {
+  padding: 12px 26px;
+  border: none;
+  border-radius: 10px;
+  background: #22d3ee;
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  transition: .25s;
+}
+button:hover { transform: translateY(-3px); }`
+    }
+  ]
+},
+/* ==================== JavaScript ==================== */
+{
+  id: 'js',
+  name: 'JavaScript',
+  icon: 'JS',
+  color: '#f7df1e',
+  desc: 'لغة التفاعل في المتصفح: المتغيرات، الشروط، الحلقات، الدوال.',
+  lessons: [
+    {
+      id: 'js-1',
+      title: 'مقدمة إلى JavaScript',
+      file: 'script.js',
+      mode: 'js',
+      body: `
+        <h2>ما هي JavaScript؟</h2>
+        <p><strong>JavaScript</strong> لغة برمجة حقيقية تعمل داخل المتصفح، وتضيف <strong>الحياة والتفاعل</strong> للصفحة: أزرار تعمل، بيانات تتحدّث، نوافذ تظهر… إلخ.</p>
+        <p>اليوم تُستخدم أيضًا على الخادم عبر <em>Node.js</em>، وفي تطبيقات الجوال والحاسوب.</p>
+        <h2>أول أمر: الطباعة</h2>
+        <pre><code>console.log("مرحبًا بالعالم");</code></pre>
+        <p>الجملة <code>console.log</code> تطبع أي شيء في وحدة تحكّم المتصفح. في هذه المنصة، الناتج يظهر في صندوق «الناتج» بالأسفل.</p>
+        <h2>الفواصل المنقوطة والأقواس</h2>
+        <ul>
+          <li>كل جملة تنتهي عادة بـ <code>;</code> — اختيارية لكنها أفضل للممارسة.</li>
+          <li>النصوص تُكتب بين علامتي تنصيص <code>" "</code> أو <code>' '</code>.</li>
+          <li>JavaScript <strong>حساسة لحالة الأحرف</strong>: <code>Name</code> تختلف عن <code>name</code>.</li>
+        </ul>
+        <h2>التعليقات</h2>
+        <pre><code>// تعليق سطر واحد
+/* تعليق
+   متعدد الأسطر */</code></pre>
+        <div class="tip"><b>ابدأ الآن</b> اكتب أي شيء داخل <code>console.log</code> واضغط «شغّل الكود».</div>
+      `,
+      code: `// أول برنامج لي في JavaScript
+console.log("مرحبًا بك في TaimCode!");
 
-padding: 12px 26px;
+console.log("أنا أتعلم JavaScript اليوم");
 
-border: none;
+// يمكنك طباعة أرقام
+console.log(2025);
 
-border-radius: 10px;
+// ويمكنك طباعة عمليات حسابية
+console.log(10 + 5);
+console.log(100 / 4);`
+    },
+    {
+      id: 'js-2',
+      title: 'المتغيرات وأنواع البيانات',
+      file: 'vars.js',
+      mode: 'js',
+      body: `
+        <h2>تعريف المتغير</h2>
+        <p>المتغير صندوق نخزّن فيه قيمة لنستخدمها لاحقًا.</p>
+        <pre><code>let age = 20;
+const name = "Taim";
+var old = "قديمة";</code></pre>
+        <h2>الفرق بينها</h2>
+        <ul>
+          <li><code>let</code> يمكن تغيير قيمته لاحقًا.</li>
+          <li><code>const</code> <strong>ثابت</strong> لا يمكن إعادة إسناده.</li>
+          <li><code>var</code> قديمة، تجنّبها في المشاريع الجديدة.</li>
+        </ul>
+        <h2>أنواع البيانات الأساسية</h2>
+        <ul>
+          <li><strong>string</strong> نص: <code>"مرحبا"</code></li>
+          <li><strong>number</strong> رقم: <code>42</code> أو <code>3.14</code></li>
+          <li><strong>boolean</strong> منطقي: <code>true</code> / <code>false</code></li>
+          <li><strong>null</strong> قيمة فارغة متعمّدة</li>
+          <li><strong>undefined</strong> غير معرّفة</li>
+          <li><strong>object</strong> كائن: <code>{ name: "Ali", age: 20 }</code></li>
+          <li><strong>array</strong> مصفوفة: <code>[1, 2, 3]</code></li>
+        </ul>
+        <h2>معرفة النوع</h2>
+        <pre><code>typeof 42        // "number"
+typeof "hello"   // "string"</code></pre>
+        <div class="note"><b>قاعدة</b> استخدم <code>const</code> افتراضيًا، و<code>let</code> فقط عند الحاجة لتغيير القيمة.</div>
+      `,
+      code: `// تعريف متغيرات
+const name = "Taim";
+let age = 18;
+let isStudent = true;
 
-background: #22d3ee;
+console.log("الاسم:", name);
+console.log("العمر:", age);
+console.log("طالب؟", isStudent);
 
-color: #0f172a;
+// تغيير قيمة let
+age = 19;
+console.log("بعد سنة:", age);
 
-font-weight: 800;
+// أنواع مختلفة
+const skills = ["HTML", "CSS", "JS"];
+const user = { name: "Taim", level: "مبتدئ" };
 
-font-size: 15px;
+console.log("المهارات:", skills);
+console.log("المستخدم:", user);
 
-cursor: pointer
+// معرفة النوع
+console.log("نوع age هو:", typeof age);
+console.log("نوع name هو:", typeof name);`
+    },
+    {
+      id: 'js-3',
+      title: 'الشروط if / else',
+      file: 'conditions.js',
+      mode: 'js',
+      body: `
+        <h2>لماذا الشروط؟</h2>
+        <p>الشروط تسمح للبرنامج <strong>باتخاذ قرار</strong> حسب قيمة معينة.</p>
+        <h2>الصيغة</h2>
+        <pre><code>if (الشرط) {
+  // ينفّذ لو الشرط صحيح
+} else if (شرط آخر) {
+  // ينفّذ لو الثاني صحيح
+} else {
+  // ينفّذ لو لا شيء تحقق
+}</code></pre>
+        <h2>عوامل المقارنة</h2>
+        <ul>
+          <li><code>===</code> يساوي تمامًا (النوع والقيمة) — <strong>استخدم هذا</strong></li>
+          <li><code>!==</code> لا يساوي</li>
+          <li><code>&gt;</code> أكبر، <code>&lt;</code> أصغر</li>
+          <li><code>&gt;=</code> أكبر أو يساوي، <code>&lt;=</code> أصغر أو يساوي</li>
+        </ul>
+        <div class="warn"><b>تحذير</b> لا تستخدم <code>==</code> لأنها تحوّل الأنواع تلقائيًا: <code>"5" == 5</code> تعطي <code>true</code>، وهذا يسبب أخطاء خفيّة.</div>
+        <h2>العوامل المنطقية</h2>
+        <ul>
+          <li><code>&amp;&amp;</code> و — يجب تحقق الشرطين.</li>
+          <li><code>||</code> أو — يكفي واحد.</li>
+          <li><code>!</code> نفي — يعكس النتيجة.</li>
+        </ul>
+        <h2>العامل الثلاثي</h2>
+        <pre><code>const result = age >= 18 ? "بالغ" : "قاصر";</code></pre>
+      `,
+      code: `// تجربة الشروط
+const score = 82;
 
-transition: .25s;
-
+if (score >= 90) {
+  console.log("التقدير: ممتاز 🌟");
+} else if (score >= 80) {
+  console.log("التقدير: جيد جدًا ✅");
+} else if (score >= 70) {
+  console.log("التقدير: جيد");
+} else if (score >= 50) {
+  console.log("التقدير: مقبول");
+} else {
+  console.log("التقدير: راسب ❌");
 }
 
-button:hover { transform: translateY(-3px); }
+// مثال آخر: التحقق من العمر
+const age = 17;
+console.log(age >= 18 ? "مسموح بالدخول" : "غير مسموح");
 
+// الجمع بين الشروط
+const hasTicket = true;
+const hasId = false;
+
+if (hasTicket && hasId) {
+  console.log("يمكنك الدخول");
+} else {
+  console.log("ناقص: " + (!hasTicket ? "تذكرة " : "") + (!hasId ? "هوية" : ""));
+}`
+    },
+    {
+      id: 'js-4',
+      title: 'الحلقات التكرارية Loops',
+      file: 'loops.js',
+      mode: 'js',
+      body: `
+        <h2>فكرة التكرار</h2>
+        <p>الحلقة تكرّر تنفيذ كود عدة مرات بدل كتابته يدويًا.</p>
+        <h2>حلقة for</h2>
+        <pre><code>for (let i = 0; i &lt; 5; i++) {
+  console.log(i);
+}</code></pre>
+        <p>الترتيب: <strong>التهيئة</strong> ← <strong>الشرط</strong> ← <strong>جسم الحلقة</strong> ← <strong>الزيادة</strong> ← إعادة الفحص.</p>
+        <h2>حلقة while</h2>
+        <pre><code>let i = 0;
+while (i &lt; 5) {
+  console.log(i);
+  i++;
+}</code></pre>
+        <div class="warn"><b>تحذير</b> نسيان زيادة <code>i++</code> يسبب حلقة لا نهائية تُجمّد المتصفح.</div>
+        <h2>حلقة do...while</h2>
+        <p>تنفّذ مرة على الأقل حتى لو كان الشرط خاطئًا من البداية.</p>
+        <h2>المرور على المصفوفات</h2>
+        <pre><code>const items = ["HTML", "CSS", "JS"];
+
+// الطريقة الكلاسيكية
+for (let i = 0; i &lt; items.length; i++) { }
+
+// الأحدث والأوضح
+for (const item of items) { }
+
+// مع الفهرس
+items.forEach((item, i) =&gt; { });</code></pre>
+        <h2>أوامر التحكم</h2>
+        <ul>
+          <li><code>break</code> يخرج من الحلقة فورًا.</li>
+          <li><code>continue</code> يتخطى الدورة الحالية ويكمل.</li>
+        </ul>
+      `,
+      code: `// حلقة for بسيطة
+console.log("--- العد من 1 إلى 5 ---");
+for (let i = 1; i <= 5; i++) {
+  console.log("الرقم:", i);
 }
 
-نهاية الجزء 1
+// حلقة while
+console.log("--- while ---");
+let count = 3;
+while (count > 0) {
+  console.log("باقي:", count);
+  count--;
+}
+console.log("انطلقنا! 🚀");
+
+// المرور على مصفوفة
+const langs = ["HTML", "CSS", "JavaScript", "Python"];
+
+console.log("--- اللغات ---");
+for (const lang of langs) {
+  console.log("•", lang);
+}
+
+// مع الفهرس
+console.log("--- مع الترقيم ---");
+langs.forEach((lang, i) => {
+  console.log((i + 1) + ") " + lang);
+});
+
+// break و continue
+console.log("--- الأرقام الزوجية فقط ---");
+for (let n = 1; n <= 10; n++) {
+  if (n % 2 !== 0) continue;  // تخطَّ الفردي
+  if (n > 8) break;           // توقف بعد 8
+  console.log(n);
+}`
+    },
+    {
+      id: 'js-5',
+      title: 'الدوال Functions',
+      file: 'functions.js',
+      mode: 'js',
+      body: `
+        <h2>ما هي الدالة؟</h2>
+        <p>الدالة كتلة كود نسمّيها، ونستدعيها عند الحاجة، بدل تكرار نفس الكود.</p>
+        <h2>الصيغة التقليدية</h2>
+        <pre><code>function greet(name) {
+  return "أهلاً " + name;
+}
+
+greet("Taim");</code></pre>
+        <h2>الدوال السهمية Arrow Functions</h2>
+        <pre><code>const greet = (name) =&gt; "أهلاً " + name;
+
+const sum = (a, b) =&gt; a + b;</code></pre>
+        <h2>المعاملات الافتراضية</h2>
+        <pre><code>function welcome(name = "زائر") {
+  return "مرحبًا " + name;
+}</code></pre>
+        <h2>return مقابل console.log</h2>
+        <ul>
+          <li><code>return</code> تُعيد قيمة للاستخدام لاحقًا، وتوقف تنفيذ الدالة.</li>
+          <li><code>console.log</code> تطبع فقط ولا تُعيد شيئًا.</li>
+        </ul>
+        <div class="tip"><b>قاعدة ذهبية</b> اجعل كل دالة تفعل شيئًا <strong>واحدًا</strong> فقط. الدالة القصيرة الواضحة أسهل في الصيانة وإعادة الاستخدام.</div>
+        <h2>الدوال المجهولة والاستدعاء الذاتي</h2>
+        <pre><code>const say = function () { /* ... */ };
+
+(function () {
+  console.log("تعمل فورًا");
+})();</code></pre>
+      `,
+      code: `// دالة تقليدية
+function greet(name) {
+  return "أهلاً " + name + " 👋";
+}
+console.log(greet("Taim"));
+console.log(greet("أحمد"));
+
+// دالة حسابية
+function add(a, b) {
+  return a + b;
+}
+console.log("5 + 3 =", add(5, 3));
+
+// دالة سهمية
+const square = (n) => n * n;
+console.log("مربع 7 هو:", square(7));
+
+// معامل افتراضي
+function welcome(name = "زائر") {
+  return "مرحبًا " + name;
+}
+console.log(welcome());
+console.log(welcome("سارة"));
+
+// دالة مع حلقة
+function sumArray(arr) {
+  let total = 0;
+  for (const n of arr) total += n;
+  return total;
+}
+console.log("مجموع [10,20,30]:", sumArray([10, 20, 30]));
+
+// دالة تحقق
+const isEven = (n) => n % 2 === 0;
+console.log("هل 8 زوجي؟", isEven(8));
+console.log("هل 7 زوجي؟", isEven(7));`
+    }
+  ]
+},
+
+/* ==================== Python ==================== */
+{
+  id: 'python',
+  name: 'Python',
+  icon: 'Py',
+  color: '#3776ab',
+  desc: 'لغة عامة قوية وسهلة: المتغيرات، الشروط، الحلقات، الدوال.',
+  lessons: [
+    {
+      id: 'py-1',
+      title: 'مقدمة إلى Python',
+      file: 'main.py',
+      mode: 'python',
+      body: `
+        <h2>ما هي Python؟</h2>
+        <p><strong>Python</strong> لغة برمجة عامة، تتميّز ببساطة تركيبها وقوة مكتباتها. تُستخدم في الذكاء الاصطناعي، تحليل البيانات، الويب، الأتمتة، والألعاب.</p>
+        <h2>أول أمر: الطباعة</h2>
+        <pre><code>print("مرحبًا بالعالم")</code></pre>
+        <p>الدالة <code>print()</code> تطبع أي شيء على الشاشة.</p>
+        <h2>المسافات البادئة Indentation</h2>
+        <p>في Python <strong>المسافات ليست للزينة</strong>، بل جزء من اللغة. أي كتلة كود (شرط، حلقة، دالة) تُكتب بعد نقطتين <code>:</code> ثم يُزاح سطرها بمقدار 4 مسافات.</p>
+        <pre><code>if True:
+    print("هذا داخل الكتلة")
+print("هذا خارجها")</code></pre>
+        <div class="warn"><b>خطأ شائع</b> خلط المسافات (tabs) مع الفراغات (spaces) يسبب خطأ <code>IndentationError</code>. اختر واحدة والتزم بها.</div>
+        <h2>التعليقات</h2>
+        <pre><code># تعليق سطر واحد
+print("مرحبا")  # تعليق بعد الكود</code></pre>
+        <div class="tip"><b>ملاحظة</b> أول تشغيل لبايثون قد يأخذ بضع ثوانٍ لتحميل المحرك. بعد ذلك يكون فوريًا.</div>
+      `,
+      code: `# أول برنامج بايثون
+print("مرحبًا بك في TaimCode! 🐍")
+print("أنا أتعلم Python اليوم")
+
+# طباعة أرقام
+print(2025)
+
+# عمليات حسابية
+print(10 + 5)
+print(100 / 4)
+print(2 ** 8)   # 2 أس 8
+
+# جمع نصوص
+print("Taim" + " " + "Dev")`
+    },
+    {
+      id: 'py-2',
+      title: 'المتغيرات وأنواع البيانات',
+      file: 'vars.py',
+      mode: 'python',
+      body: `
+        <h2>تعريف المتغير</h2>
+        <p>في Python لا نكتب نوع المتغير، اللغة تفهمه تلقائيًا:</p>
+        <pre><code>name = "Taim"
+age = 18
+height = 1.75
+is_dev = True</code></pre>
+        <h2>الأنواع الأساسية</h2>
+        <ul>
+          <li><strong>str</strong> نص: <code>"مرحبا"</code></li>
+          <li><strong>int</strong> عدد صحيح: <code>42</code></li>
+          <li><strong>float</strong> عدد عشري: <code>3.14</code></li>
+          <li><strong>bool</strong> منطقي: <code>True</code> / <code>False</code> (بحرف كبير)</li>
+          <li><strong>list</strong> قائمة: <code>[1, 2, 3]</code></li>
+          <li><strong>tuple</strong> ثابتة: <code>(1, 2)</code></li>
+          <li><strong>dict</strong> قاموس: <code>{"name": "Taim"}</code></li>
+        </ul>
+        <h2>معرفة النوع</h2>
+        <pre><code>type(42)     # &lt;class 'int'&gt;
+type("hi")   # &lt;class 'str'&gt;</code></pre>
+        <h2>تحويل الأنواع</h2>
+        <pre><code>int("25")      # 25
+str(100)       # "100"
+float("3.5")   # 3.5</code></pre>
+        <h2>f-strings للتنسيق</h2>
+        <pre><code>name = "Taim"
+age = 18
+print(f"اسمي {name} وعمري {age}")</code></pre>
+        <div class="tip"><b>الأفضل</b> استخدم f-strings فهي أوضح وأسرع من الجمع بـ <code>+</code>.</div>
+      `,
+      code: `# متغيرات متنوعة
+name = "Taim"
+age = 18
+height = 1.75
+is_developer = True
+
+print("الاسم:", name)
+print("العمر:", age)
+print("الطول:", height)
+print("مطور؟", is_developer)
+
+# تغيير القيمة
+age = 19
+print("العمر الجديد:", age)
+
+# معرفة النوع
+print("نوع age:", type(age))
+print("نوع name:", type(name))
+
+# تحويل الأنواع
+num_text = "25"
+num_int = int(num_text)
+print(num_int + 5)
+
+# f-string
+print(f"أنا {name}، عمري {age} سنة، وطولي {height} متر")
+
+# قوائم وقواميس
+skills = ["Python", "HTML", "CSS"]
+user = {"name": "Taim", "level": "مبتدئ"}
+
+print("المهارات:", skills)
+print("أول مهارة:", skills[0])
+print("المستخدم:", user)
+print("المستوى:", user["level"])`
+    },
+    {
+      id: 'py-3',
+      title: 'الشروط if / elif / else',
+      file: 'conditions.py',
+      mode: 'python',
+      body: `
+        <h2>الصيغة</h2>
+        <pre><code>if الشرط:
+    ...
+elif شرط_آخر:
+    ...
+else:
+    ...</code></pre>
+        <h2>عوامل المقارنة</h2>
+        <ul>
+          <li><code>==</code> يساوي (لاحظ الاثنين)</li>
+          <li><code>!=</code> لا يساوي</li>
+          <li><code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code></li>
+        </ul>
+        <h2>العوامل المنطقية</h2>
+        <p>في Python تُكتب بالكلمات وليس بالرموز:</p>
+        <ul>
+          <li><code>and</code> بدل <code>&amp;&amp;</code></li>
+          <li><code>or</code> بدل <code>||</code></li>
+          <li><code>not</code> بدل <code>!</code></li>
+        </ul>
+        <pre><code>if age &gt;= 18 and has_id:
+    print("مسموح")</code></pre>
+        <h2>التحقق من العضوية</h2>
+        <pre><code>if "Python" in skills:
+    print("تعرف بايثون")</code></pre>
+        <h2>الشروط المتداخلة</h2>
+        <p>يمكن وضع <code>if</code> داخل <code>if</code>، مع زيادة المسافات البادئة بمقدار 4 لكل مستوى.</p>
+        <div class="note"><b>تذكّر</b> النقطتان <code>:</code> إلزامية بعد كل شرط، والمسافة البادئة بعده إلزامية أيضًا.</div>
+      `,
+      code: `# شروط بسيطة
+score = 85
+
+if score >= 90:
+    print("التقدير: ممتاز 🌟")
+elif score >= 80:
+    print("التقدير: جيد جدًا ✅")
+elif score >= 70:
+    print("التقدير: جيد")
+elif score >= 50:
+    print("التقدير: مقبول")
+else:
+    print("التقدير: راسب ❌")
+
+# شروط مركبة
+age = 20
+has_id = True
+
+if age >= 18 and has_id:
+    print("يمكنك الدخول")
+else:
+    print("غير مسموح")
+
+# استخدام or
+day = "جمعة"
+if day == "جمعة" or day == "سبت":
+    print("عطلة نهاية الأسبوع 🎉")
+else:
+    print("يوم عمل")
+
+# التحقق من العضوية
+langs = ["Python", "JavaScript", "HTML"]
+
+if "Python" in langs:
+    print("Python موجودة في القائمة ✔")
+
+if "Go" not in langs:
+    print("Go ليست في القائمة")
+
+# شروط متداخلة
+temp = 35
+if temp > 30:
+    print("الجو حار")
+    if temp > 40:
+        print("حار جدًا! اشرب ماء")
+    else:
+        print("حار لكن محتمل")`
+    },
+    {
+      id: 'py-4',
+      title: 'الحلقات for و while',
+      file: 'loops.py',
+      mode: 'python',
+      body: `
+        <h2>حلقة for</h2>
+        <p>تُستخدم للمرور على عناصر متسلسلة:</p>
+        <pre><code>for i in range(5):
+    print(i)   # 0 1 2 3 4</code></pre>
+        <h2>الدالة range</h2>
+        <ul>
+          <li><code>range(5)</code> من 0 إلى 4</li>
+          <li><code>range(1, 6)</code> من 1 إلى 5</li>
+          <li><code>range(0, 10, 2)</code> من 0 إلى 8 بخطوة 2</li>
+        </ul>
+        <h2>المرور على القوائم</h2>
+        <pre><code>fruits = ["تفاح", "موز", "عنب"]
+
+for fruit in fruits:
+    print(fruit)</code></pre>
+        <h2>مع الفهرس</h2>
+        <pre><code>for i, fruit in enumerate(fruits):
+    print(i, fruit)</code></pre>
+        <h2>حلقة while</h2>
+        <pre><code>count = 5
+while count &gt; 0:
+    print(count)
+    count -= 1</code></pre>
+        <div class="warn"><b>تحذير</b> تأكد من تغيير شرط الحلقة داخل جسمها، وإلا ستستمر للأبد (وقد تتوقف المنصة بعد مهلة).</div>
+        <h2>break و continue</h2>
+        <ul>
+          <li><code>break</code> تخرج من الحلقة فورًا.</li>
+          <li><code>continue</code> تتخطى الدورة الحالية.</li>
+        </ul>
+        <h2>حلقة on else</h2>
+        <p>ميزة خاصة ببايثون: يمكن إضافة <code>else</code> بعد الحلقة، وتُنفَّذ فقط إن لم يحدث <code>break</code>.</p>
+      `,
+      code: `# حلقة for بسيطة
+print("--- العد من 1 إلى 5 ---")
+for i in range(1, 6):
+    print(i)
+
+# خطوة مختلفة
+print("--- الأرقام الزوجية ---")
+for i in range(0, 11, 2):
+    print(i)
+
+# المرور على قائمة
+print("--- الفواكه ---")
+fruits = ["تفاح", "موز", "عنب", "مانجو"]
+for fruit in fruits:
+    print("•", fruit)
+
+# مع الفهرس
+print("--- مع الترقيم ---")
+for i, fruit in enumerate(fruits, start=1):
+    print(f"{i}) {fruit}")
+
+# حلقة while
+print("--- العد التنازلي ---")
+count = 5
+while count > 0:
+    print(count)
+    count -= 1
+print("انطلقنا! 🚀")
+
+# break و continue
+print("--- الأرقام الفردية حتى 9 ---")
+for n in range(1, 20):
+    if n % 2 == 0:
+        continue
+    if n > 9:
+        break
+    print(n)
+
+# مجموع الأرقام
+total = 0
+for n in range(1, 101):
+    total += n
+print("مجموع 1 إلى 100 =", total)`
+    },
+    {
+      id: 'py-5',
+      title: 'الدوال Functions',
+      file: 'functions.py',
+      mode: 'python',
+      body: `
+        <h2>تعريف الدالة</h2>
+        <pre><code>def greet(name):
+    return "أهلاً " + name</code></pre>
+        <p>الكلمة <code>def</code> تعني «تعريف»، ثم اسم الدالة، ثم الأقواس بالمعاملات، ثم نقطتان.</p>
+        <h2>الاستدعاء</h2>
+        <pre><code>message = greet("Taim")
+print(message)</code></pre>
+        <h2>قيم افتراضية</h2>
+        <pre><code>def welcome(name="زائر"):
+    return "مرحبًا " + name</code></pre>
+        <h2>معاملات مسماة</h2>
+        <pre><code>def user(name, age):
+    return f"{name} عمره {age}"
+
+user(age=20, name="Ali")   # الترتيب لا يهم</code></pre>
+        <h2>عدد غير محدود من المعاملات</h2>
+        <pre><code>def total(*numbers):
+    return sum(numbers)
+
+total(1, 2, 3, 4)</code></pre>
+        <h2>return مقابل print</h2>
+        <ul>
+          <li><code>return</code> تُعيد قيمة وتوقف الدالة.</li>
+          <li><code>print</code> تطبع فقط ولا تُعيد شيئًا (تُعيد <code>None</code>).</li>
+        </ul>
+        <div class="tip"><b>نصيحة</b> اجعل كل دالة مسؤولة عن مهمة واحدة، وسمّها باسم يعبّر عنها بوضوح مثل <code>calculate_total</code>.</div>
+      `,
+      code: `# دالة بسيطة
+def greet(name):
+    return "أهلاً " + name + " 👋"
+
+print(greet("Taim"))
+print(greet("سارة"))
+
+# دالة حسابية
+def add(a, b):
+    return a + b
+
+print("5 + 3 =", add(5, 3))
+
+# قيمة افتراضية
+def welcome(name="زائر"):
+    return "مرحبًا " + name
+
+print(welcome())
+print(welcome("أحمد"))
+
+# معاملات مسماة
+def user_info(name, age):
+    return f"{name} عمره {age} سنة"
+
+print(user_info(age=20, name="Ali"))
+
+# عدد غير محدود من المعاملات
+def total(*numbers):
+    return sum(numbers)
+
+print("المجموع:", total(10, 20, 30, 40))
+
+# دالة مع حلقة
+def count_even(numbers):
+    count = 0
+    for n in numbers:
+        if n % 2 == 0:
+            count += 1
+    return count
+
+nums = [1, 2, 3, 4, 5, 6, 7, 8]
+print("عدد الأرقام الزوجية:", count_even(nums))
+
+# دالة تُعيد قائمة
+def squares(n):
+    return [i * i for i in range(1, n + 1)]
+
+print("المربعات:", squares(6))`
+    }
+  ]
+}
+
+];
