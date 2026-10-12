@@ -56,7 +56,23 @@
   </div>
 </footer>
 
+<!-- ============ السكربتات ============ -->
 <script src="lessons.js"></script>
+
+<!-- ✅ ضمان إخفاء شاشة التحميل مهما حدث -->
+<script>
+  setTimeout(function () {
+    var p = document.getElementById('preloader');
+    if (p && !p.classList.contains('is-hidden')) {
+      p.classList.add('is-hidden');
+      document.body.classList.add('ready');
+      setTimeout(function () {
+        if (p.parentNode) p.parentNode.removeChild(p);
+      }, 900);
+    }
+  }, 1200);
+</script>
+
 <script src="app.js"></script>
 </body>
 </html>
