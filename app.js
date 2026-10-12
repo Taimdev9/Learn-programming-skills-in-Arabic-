@@ -7,7 +7,7 @@
 
   var COURSES = window.COURSES || [];
   var STORAGE_KEY = 'taimcode.progress.v1';
-  var MIN_LOADING = 2400;
+  var MIN_LOADING = 800;   // ⚡ مدة شاشة التحميل (ميلي ثانية)
   var startedAt = Date.now();
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -394,3 +394,61 @@
   }
 
   /* ---------------- التوجيه ---------------- */
+  function route() {
+    var hash = location.hash.replace(/^#\/?/, '');
+    var parts = hash.split('/').filter(Boolean);
+
+    // #/  أو  فارغ  → الرئيسية
+    if (parts.length === 0) {
+      renderHome();
+      return;
+    }
+
+    // #/c/{courseId}  أو  #/c/{courseId}/{index}
+    if (parts[0] === 'c' && parts[1]) {
+      var course = COURSES.find(function (c) { return c.id === parts[1]; });
+      if (!course) { renderHome(); return; }
+
+      var idx = parseInt(parts[2], 10);
+      if (isNaN(idx) || idx < 0 || idx >= course.lessons.length) idx = 0;
+
+      renderCourse(course, idx);
+      return;
+    }
+
+    renderHome();
+  }
+
+  /* ---------------- الإقلاع ---------------- */
+  window.addEventListener('hashchange', route);
+  window.addEventListener('DOMContentLoaded', function () {
+    buildNav();
+    route();
+
+    // سنة الفوتر
+    var y = $('#year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    // زر القائمة للجوال
+    var burger = $('#burger');
+    if (burger) {
+      burger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        $('#nav').classList.toggle('open');
+      });
+    }
+  });
+
+  // احتياط في حال تأخر DOMContentLoaded
+  if (document.readyState !== 'loading') {
+    setTimeout(function () {
+      if (!$('#nav').innerHTML) {
+        buildNav();
+        route();
+        var y = $('#year');
+        if (y) y.textContent = new Date().getFullYear();
+      }
+    }, 0);
+  }
+
+})();
